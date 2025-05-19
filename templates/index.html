@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultasi Cinta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff2d75;
+            --primary-light: #ff6b9d;
+            --primary-dark: #d4004e;
+            --secondary: #ffb8d9;
+            --dark: #1a1a2e;
+            --light: #fef6f9;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), #2a0a3a);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(206, 0, 88, 0.3);
+            overflow: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            left: 0;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 45, 117, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 45, 117, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 45, 117, 0);
+            }
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            color: var(--primary) !important;
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Floating Image */
+        .floating-image {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(255, 45, 117, 0.5);
+            animation: float 4s ease-in-out infinite;
+            z-index: 10;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="px-4 py-8">
+    <div class="container mx-auto max-w-6xl">
+        <div class="glass-card flex flex-col lg:flex-row">
+            <!-- Form Section -->
+            <div class="w-full lg:w-1/2 p-8 lg:p-12">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-heart text-4xl mr-3 gradient-text"></i>
+                    <h1 class="text-3xl md:text-4xl font-bold gradient-text">Konsultasi Cinta</h1>
+                </div>
+                
+                <p class="text-sm text-gray-300 mb-8">Dapatkan saran cerdas untuk masalah asmara Anda dengan teknologi AI terkini.</p>
+                
+                <form id="consultForm" action="/result" method="POST" class="space-y-6">
+                    <div>
+                        <label for="user_input" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-comment-dots mr-2 text-pink-300"></i> Curhat Kamu
+                        </label>
+                        <textarea 
+                            id="user_input" 
+                            name="user_input" 
+                            rows="5" 
+                            class="w-full px-4 py-3 rounded-xl input-field text-white placeholder-gray-400 focus:outline-none" 
+                            placeholder="Aku ditinggal pergi pacar pas lagi sayang-sayangnya..."
+                            required></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="style" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-magic mr-2 text-pink-300"></i> Gaya Jawaban
+                        </label>
+                        <select 
+                            id="style" 
+                            name="style" 
+                            class="w-full px-4 py-3 rounded-xl input-field text-white focus:outline-none">
+                            <option value="puitis">Puitis</option>
+                            <option value="lucu">Lucu</option>
+                            <option value="formal">Formal</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="w-full py-3 px-6 rounded-xl btn-primary text-white font-semibold text-lg flex items-center justify-center pulse">
+                        <span id="submitText">
+                            <i class="fas fa-robot mr-2"></i> Konsultasikan!
+                        </span>
+                        <span id="loading" class="loading">
+                            <span class="spinner"></span> Memproses...
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="mt-10 pt-6 border-t border-gray-800">
+                    <p class="text-xs text-gray-400 text-center mb-3">© 2025 Iwan Cilibur. All rights reserved.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://github.com/iwancilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://facebook.com/iwan.cilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/iwancilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://dunyotech.myr.id/payme" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fas fa-heart text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Illustration Section -->
+            <div class="w-full lg:w-1/2 bg-gradient-to-br from-pink-900 to-purple-900 hidden lg:flex items-center justify-center p-8 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgdmlld0JveD0iMCAwIDUwIDUwIj48cGF0aCBkPSJNMjUgMTVjLTUuNTIzIDAtMTAgNC40NzctMTAgMTBzNC40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTAtNC40NzctMTAtMTAtMTB6IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==');"></div>
+                
+                <div class="text-center relative z-10">
+                    <div class="floating mb-6">
+                        <i class="fas fa-heart text-8xl gradient-text"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Solusi Cinta Modern</h3>
+                    <p class="text-gray-300 max-w-md mx-auto">Dengan teknologi terkini, kami memberikan saran yang tepat untuk masalah hubungan Anda.</p>
+                    
+                    <div class="mt-8 grid grid-cols-3 gap-4 max-w-xs mx-auto">
+                        <div class="bg-pink-900 bg-opacity-50 p-3 rounded-lg">
+                            <i class="fas fa-brain text-2xl text-pink-300 mb-2"></i>
+                            <p class="text-xs text-gray-300">AI Cerdas</p>
+                        </div>
+                        <div class="bg-pink-900 bg-opacity-50 p-3 rounded-lg">
+                            <i class="fas fa-lock text-2xl text-pink-300 mb-2"></i>
+                            <p class="text-xs text-gray-300">Privasi</p>
+                        </div>
+                        <div class="bg-pink-900 bg-opacity-50 p-3 rounded-lg">
+                            <i class="fas fa-bolt text-2xl text-pink-300 mb-2"></i>
+                            <p class="text-xs text-gray-300">Cepat</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Image -->
+                <img src="{{ url_for('static', filename='love.png') }}"
+                     alt="Love Consultant" 
+                     class="floating-image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('consultForm').addEventListener('submit', function(e) {
+            // Show loading animation
+            document.getElementById('submitText').style.display = 'none';
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('submitBtn').classList.remove('pulse');
+            
+            // Simulate processing delay (remove this in production)
+            setTimeout(function() {
+                // This is just for demo, in real app you would submit the form
+                // document.getElementById('consultForm').submit();
+                
+                // For demo purposes, reset after 3 seconds
+                setTimeout(function() {
+                    document.getElementById('submitText').style.display = 'block';
+                    document.getElementById('loading').classList.remove('active');
+                    document.getElementById('submitBtn').classList.add('pulse');
+                }, 3000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

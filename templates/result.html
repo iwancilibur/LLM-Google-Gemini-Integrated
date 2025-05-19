@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Konsultasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0a1a, #3a1a3a, #2a0a2a);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.2);
+        }
+        
+        .pink-gradient {
+            background: linear-gradient(135deg, #ff6b8b, #ff8e53, #ff6b8b);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ff6b8b;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px #ff6b8b, 0 0 20px #ff6b8b, 0 0 30px #ff6b8b;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .love-image {
+            max-height: 300px;
+            object-fit: contain;
+        }
+        
+        .formatted-answer {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .formatted-answer strong {
+            color: #ff6b8b;
+            font-weight: 600;
+        }
+        
+        .formatted-answer ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .formatted-answer li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="glass-card w-full max-w-4xl p-8 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-pink-500 opacity-20 blur-xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-purple-500 opacity-20 blur-xl"></div>
+        
+        <div class="relative z-10">
+            <div class="flex flex-col">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-heart text-4xl text-pink-500 mr-4 floating"></i>
+                    <h1 class="text-3xl font-bold bg-clip-text text-transparent pink-gradient neon-text">Jawaban Cinta</h1>
+                </div>
+                
+                <div class="mb-8">
+                    <p class="text-lg font-medium text-pink-300 mb-2">Pertanyaan kamu:</p>
+                    <div class="glass-card p-4 border-l-4 border-pink-500 bg-gradient-to-r from-pink-900/20 to-transparent">
+                        <blockquote class="text-white italic">{{ question }}</blockquote>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <p class="text-lg font-medium text-pink-300 mb-2">Jawaban kami:</p>
+                    <div class="glass-card p-6 bg-gradient-to-br from-pink-900/20 to-purple-900/20 rounded-xl">
+                        <div class="formatted-answer text-white leading-relaxed" id="answerContent">{{ answer|safe }}</div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-4 mt-4 mb-6 flex flex-col items-center">
+                    <img src="{{ url_for('static', filename='consul.jpg') }}"
+                         alt="Couple silhouette" 
+                         class="love-image w-full rounded-lg shadow-lg">
+                    <p class="text-center text-pink-200 mt-3 text-sm">Cinta adalah jawaban untuk semua pertanyaan</p>
+                </div>
+                
+                <button id="consultBtn" class="pink-gradient hover:opacity-90 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center w-full mb-6">
+                    <i class="fas fa-redo-alt mr-2"></i> Konsultasi Lagi
+                </button>
+                
+                <div class="flex flex-col items-center">
+                    <div class="flex justify-center space-x-4 mb-3">
+                        <a href="https://github.com/iwancilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://facebook.com/iwan.cilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/iwancilibur" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://dunyotech.myr.id/payme" target="_blank" class="social-icon text-gray-300 hover:text-pink-400">
+                            <i class="fas fa-heart text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-400 text-center">© 2025 Iwan Cilibur. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Animation -->
+    <div id="loading" class="loading">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h2 class="text-2xl font-bold text-white mb-2">Memproses...</h2>
+            <p class="text-pink-200">Sedang menganalisis pertanyaan Anda</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('consultBtn').addEventListener('click', function() {
+            // Show loading animation
+            document.getElementById('loading').style.display = 'flex';
+            
+            // Simulate processing time (2 seconds)
+            setTimeout(function() {
+                // Hide loading animation and redirect
+                document.getElementById('loading').style.display = 'none';
+                window.location.href = '/';
+            }, 2000);
+        });
+
+        // Format the answer content after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const answerContent = document.getElementById('answerContent');
+            const originalContent = answerContent.innerHTML;
+            
+            // Format the content
+            function formatAnswer(content) {
+                // Replace *text* with <strong>text</strong>
+                let formatted = content.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+                
+                // Replace numbered lists with proper HTML lists
+                formatted = formatted.replace(/(\d+\.\s+.*(\n|$))/g, function(match) {
+                    return '<li>' + match.replace(/\d+\.\s+/, '') + '</li>';
+                });
+                
+                // Wrap lists in <ol> tags if we find list items
+                if (formatted.includes('<li>')) {
+                    formatted = formatted.replace(/(<li>.*<\/li>)+/g, function(match) {
+                        return '<ol>' + match + '</ol>';
+                    });
+                }
+                
+                // Preserve line breaks
+                formatted = formatted.replace(/\n/g, '<br>');
+                
+                return formatted;
+            }
+            
+            // Apply formatting to the answer content
+            answerContent.innerHTML = formatAnswer(originalContent);
+        });
+    </script>
+</body>
+</html>
