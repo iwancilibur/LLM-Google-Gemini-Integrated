@@ -23,6 +23,9 @@ Ilustrasi ini menggambarkan sebuah sesi "Konsultasi Cinta" yang canggih dan mode
 - venv\Scripts\activate  # untuk Windows
 
 ## Struktur Folder yang Direkomendasikan
+<details>
+<summary></summary>love_consultation_app</summary>
+
 love_consultation_app/
 ├── app.py
 ├── templates/
@@ -33,6 +36,9 @@ love_consultation_app/
 ├── data/
 │   └── love_articles.pdf
 ├── requirements.txt
+
+</details>
+
 
 # Install dependencies
 python.exe -m pip install --upgrade pip
