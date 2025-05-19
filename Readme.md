@@ -1,8 +1,3 @@
-Tentu! Berikut adalah **preview halaman GitHub** dalam format Markdown lengkap dengan **badges** seperti "Made with Flask", "License", dan "Built with Gemini":
-
----
-
-````markdown
 # 💘 Konsultasi Cinta dengan Integrasi AI Google Gemini
 
 ![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-blue?logo=flask)
