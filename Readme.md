@@ -22,7 +22,7 @@ Ilustrasi ini menggambarkan sebuah sesi "Konsultasi Cinta" yang canggih dan mode
 - source venv/bin/activate  # Untuk Linux/Mac
 - venv\Scripts\activate  # untuk Windows
 
-# Struktur Folder yang Direkomendasikan
+## Struktur Folder yang Direkomendasikan
 love_consultation_app/
 ├── app.py
 ├── templates/
