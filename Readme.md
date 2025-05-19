@@ -1,13 +1,22 @@
-Berikut versi yang telah diperbaiki dan dirapikan agar tampak profesional serta rapi saat ditampilkan di `README.md` GitHub:
+Tentu! Berikut adalah **preview halaman GitHub** dalam format Markdown lengkap dengan **badges** seperti "Made with Flask", "License", dan "Built with Gemini":
+
+---
 
 ````markdown
-# 💘 Konsultasi Cinta dengan Integrasi AI LLM Google Gemini
+# 💘 Konsultasi Cinta dengan Integrasi AI Google Gemini
+
+![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-blue?logo=flask)
+![Built with Gemini](https://img.shields.io/badge/Built%20with-Gemini-ff69b4?logo=google)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Status](https://img.shields.io/badge/Status-Beta-yellow)
+
+---
 
 Ilustrasi ini menggambarkan sesi **Konsultasi Cinta** yang canggih dan modern menggunakan integrasi AI LLM (Large Language Model) **Google Gemini**. Di dalam gambar terlihat elemen-elemen romantis yang berpadu dengan teknologi—simbol hati, percakapan digital, dan perangkat AI yang memberikan nasihat cinta secara personal.
 
 🧠 Era baru telah hadir: perpaduan perasaan dan teknologi memungkinkan siapa pun curhat dan mendapatkan nasihat **puitis**, **lucu**, atau **formal** tentang cinta—semua dibantu kecerdasan buatan.
 
-![Ilustrasi Konsultasi Cinta AI](https://github.com/user-attachments/assets/e69f71d3-7768-44ec-b2c1-97e954584eb4)
+![Image](https://github.com/user-attachments/assets/e69f71d3-7768-44ec-b2c1-97e954584eb4)
 
 ---
 
@@ -120,6 +129,4 @@ ngrok http http://127.0.0.1:5000
 > Jangan lupa ⭐ project ini jika bermanfaat dan bantu share ke yang sedang galau\~ 🌹
 
 ```
-
-Jika kamu ingin saya bantu buatkan preview halaman GitHub-nya (HTML atau Markdown viewer) atau badges seperti "Made with Flask", "License", atau "Built with Gemini", beri tahu saja.
 ```
