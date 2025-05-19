@@ -1,6 +1,6 @@
 # Konsultasi cinta dengan integrasi Ai LLM Google Gemini:
 Ilustrasi ini menggambarkan sebuah sesi "Konsultasi Cinta" yang canggih dan modern dengan integrasi AI LLM (Large Language Model) Google Gemini. Di dalam gambar, terlihat elemen-elemen romantis yang berpadu dengan teknologi—simbol hati, percakapan digital, serta perangkat AI yang membantu memberikan nasihat cinta secara personal. Ini mencerminkan era baru di mana perasaan dan teknologi berpadu, memungkinkan siapa pun untuk curhat, mendapatkan nasihat puitis, lucu, atau formal tentang cinta dengan bantuan kecerdasan buatan.
-!Demo](static/konsultasi.png)
+!Demo]([static/konsultasi.png](https://github.com/iwancilibur/LLM-Google-Gemini-Integrated/blob/main/static/konsultasi.png))
 
 # Fiture
 ✅PDF lokal (jika tersedia)
