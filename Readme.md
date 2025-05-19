@@ -3,20 +3,19 @@ Ilustrasi ini menggambarkan sebuah sesi "Konsultasi Cinta" yang canggih dan mode
 ![Image](https://github.com/user-attachments/assets/e69f71d3-7768-44ec-b2c1-97e954584eb4)
 
 # Fiture
-✅PDF lokal (jika tersedia)
-✅Sumber online (misal artikel tentang cinta dan hubungan)
-✅Pengetahuan dasar tentang cinta (gaya puitis/lucu/formal)
-✅Output dari model Gemini (menggunakan konteks di atas)
+- ✅PDF lokal (jika tersedia)
+- ✅Sumber online (misal artikel tentang cinta dan hubungan)
+- ✅Pengetahuan dasar tentang cinta (gaya puitis/lucu/formal)
+- ✅Output dari model Gemini (menggunakan konteks di atas)
 
 # Program ini sudah dioptimalkan untuk:
-✅Ketepatan diagnosa (dengan cross-checking sumber online)
-✅Kenyamanan pengguna (antarmuka intuitif) "Masih perlu rapihin lagi"
+- ✅Ketepatan diagnosa (dengan cross-checking sumber online)
+- ✅Kenyamanan pengguna (antarmuka intuitif) "Masih perlu rapihin lagi"
 
 # Teknologi:
-✅ Gemini Genai
-✅ Langchain
-✅ Flask
-✅ Mysql
+- ✅ Gemini Genai
+- ✅ Langchain
+- ✅ Flask
 
 # Buat environment baru
 - python -m venv venv
